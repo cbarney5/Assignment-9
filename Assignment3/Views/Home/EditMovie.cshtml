@@ -1,0 +1,64 @@
+﻿@*
+    Edit Page
+*@
+
+@model Assignment3.Models.ApplicationResponse
+<form asp-action="EditMovie" method="post">
+    <input type="hidden" name="id" value="@ViewData["id"]"/>
+    <div>
+        <label asp-for="category">Category:</label>
+        <input asp-for="category" placeholder="Category" />
+    </div>
+    <br />
+    @*
+        Movie inputs in form
+    *@
+    <div>
+        <label asp-for="title">Title:</label>
+        <input asp-for="title" />
+    </div>
+    <br />
+    <div>
+        <label asp-for="year">Year:</label>
+        <input asp-for="year" />
+    </div>
+    <br />
+    <div>
+        <label asp-for="director">Director:</label>
+        <input asp-for="director" />
+    </div>
+    <br />
+    <div>
+        <label asp-for="rating">Rating:</label>
+        <select asp-for="rating">
+            <option value="">Select One</option>
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+        </select>
+    </div>
+    <br />
+    <div>
+        <label asp-for="edited">Edited:</label>
+        <select asp-for="edited">
+            <option value="False">Select One</option>
+            <option value="True">Yes</option>
+            <option value="False">No</option>
+        </select>
+    </div>
+    <br />
+    <div>
+        <label asp-for="lentTo">Lent To:</label>
+        <input asp-for="lentTo" />
+    </div>
+    <br />
+    <div>
+        <label asp-for="notes">Notes:</label>
+        <input type="text" maxlength="25" asp-for="notes" />
+    </div>
+    <br />
+    <input type="hidden" asp-for="MovieId" value="@ViewData["id"]" />
+    <button type="submit">Submit Movie</button>
+
+</form>

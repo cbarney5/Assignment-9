@@ -1,0 +1,61 @@
+﻿@*
+    Table for Movie Collection
+*@
+@{
+    ViewBag.Title = "Movie Collection";
+}
+@model Assignment3.Models.ViewModels.MovieCollectionViewModel
+<div class="container">
+    <h2>
+        Here is your movie collection:
+    </h2>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th>Category</th>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Director</th>
+                <th>Rating</th>
+                <th>Edited</th>
+                <th>Lent To</th>
+                <th>Notes</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        @*
+            Makes sure Independence Day cannot be input
+        *@
+        <tbody>
+            @foreach (var x in Model.ApplicationResponses)
+            {@if (x.title != "Independence Day")
+                {
+            <tr>
+                <td>@x.category</td>
+                <td>@x.title</td>
+                <td>@x.year</td>
+                <td>@x.director</td>
+                <td>@x.rating</td>
+                <td>@x.edited</td>
+                <td>@x.lentTo</td>
+                <td>@x.notes</td>
+                <td>
+                    <form asp-action="MovieCollection" method="post">
+                        <input type="hidden" name="id" value="@x.MovieId" />
+                        <button class="btn btn-warning" type="submit">Edit</button>
+                    </form>
+                </td>
+                <td>
+                    <form asp-action="DeleteMovie" method="post">
+                        <input type="hidden" name="id" value="@x.MovieId" />
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+                }
+        }
+        </tbody>
+    </table>
+</div>
