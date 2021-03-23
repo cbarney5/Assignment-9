@@ -10,7 +10,7 @@ using Assignment3.Models.ViewModels;
 using System.Net;
 
 namespace Assignment3.Controllers
-{
+{//sets context
     public class HomeController : Controller
     {
         private MovieDbContext context { get; set; }
@@ -49,6 +49,7 @@ namespace Assignment3.Controllers
               .Select(s => s)
             });
         }
+        //selects all movies
         [HttpGet]
         public IActionResult MovieCollection()
         {
@@ -57,7 +58,7 @@ namespace Assignment3.Controllers
                 ApplicationResponses = context.Movies.Select(s => s)
             });
         }
-
+        //sends movies to edit with id
         [HttpPost]
         public IActionResult MovieCollection(int id)
         {
@@ -70,6 +71,7 @@ namespace Assignment3.Controllers
             
            
         }
+        //returns edited movies
         [HttpPost]
         public IActionResult EditMovie(ApplicationResponse mov, int id)
         {
@@ -93,7 +95,7 @@ namespace Assignment3.Controllers
                 ApplicationResponses = context.Movies.Select(s => s)
             });
         }
-
+        //deletes movie
         public IActionResult DeleteMovie(int id)
         {
             ApplicationResponse Movie = context.Movies.Where(x => x.MovieId == id).FirstOrDefault();
@@ -109,7 +111,7 @@ namespace Assignment3.Controllers
 
         public IActionResult Privacy()
         {
-            return View("MovieList", new MovieCollectionViewModel()
+            return View("MovieCollection", new MovieCollectionViewModel()
             {
                 ApplicationResponses = context.Movies
                 .Select(s => s)
